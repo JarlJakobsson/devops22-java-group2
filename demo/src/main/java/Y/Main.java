@@ -1,9 +1,5 @@
 package Y;
 
-/**
- * Hello world!
- *
- */
 abstract class Main {
     
 
@@ -11,5 +7,7 @@ abstract class Main {
     {
         Player player = new Player("Milkman");
         Cow cow = new Cow();
+        player.buyAnimal(cow);
+        Menu.runMenu(player, player.getAnimal(0));
     }
 }
