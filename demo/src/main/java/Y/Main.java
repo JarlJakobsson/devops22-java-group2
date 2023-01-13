@@ -8,6 +8,6 @@ abstract class Main {
         Player player = new Player("Milkman");
         Cow cow = new Cow();
         player.buyAnimal(cow);
-        Menu.runMenu(player, player.getAnimal(0));
+        MainMenu.runMenu(player, player.getAnimal(0));
     }
 }
