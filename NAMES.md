@@ -7,5 +7,3 @@
 [SamanPetfat](https://github.com/SamanPetfat) | Saman Petfat
 
 [JarlJakobsson](https://github.com/JarlJakobsson) | Jarl Jakobsson
-
-[Nina-se](https://github.com/Nina-se) | Nina Mattsson
