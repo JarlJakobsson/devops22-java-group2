@@ -1,6 +1,7 @@
 package Y;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -32,6 +33,30 @@ public class PlayerTest {
     @Test
     public void testFullBucket() {
         player.milkAnimal(gigaGoat);
-        assertEquals(player.getBucket(), player.getBucketsize());
+        assertEquals(player.getBucket(), player.getBucketSize());
     }
+
+    // Tests if buyAnimal function works
+    boolean working = false;
+    @Test
+    public void testBuyAnimal() {
+        player.buyAnimal(cow);
+
+        for(Animal animal: player.getAnimalList()) {
+            if (animal.getName() == "Cow") {
+                this.working = true;
+            }
+        }
+        if (this.working == false) {
+            fail("Test failed.");
+        }
+    }
+
+    @Test
+    public void testUpgradeBucketSize() {
+        player.upgradeBucketSize();
+        assertEquals(player.getBucketSize(), 20);
+    }
+
+    
 }
