@@ -1,6 +1,6 @@
 package Y;
 
-class Goat extends Animal {
+class Goat extends Milkables {
     public Goat() {
         setName("Goat");
         setMilkValue(2);

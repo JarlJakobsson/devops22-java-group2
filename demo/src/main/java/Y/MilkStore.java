@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MilkStore {
-    private List<Animal> buyableAnimals = new ArrayList<Animal>();
+    private List<Milkables> buyableAnimals = new ArrayList<Milkables>();
     private String storeName = "The Milkshop";
 
     public MilkStore() {
@@ -32,7 +32,7 @@ public class MilkStore {
         this.buyableAnimals.add(almond);
     }
 
-    public List<Animal> getBuyableAnimalsList() {
+    public List<Milkables> getBuyableAnimalsList() {
         return this.buyableAnimals;
     }
 
@@ -44,8 +44,8 @@ public class MilkStore {
         this.buyableAnimals.remove(i);
     }
 
-    static boolean intCheck(String str, int n) {
-        for (int i = 0; i < n; i++) {
+    static boolean intCheck(String str, int len) {
+        for (int i = 0; i < len; i++) {
             if (str.charAt(i) < '1'
                     || str.charAt(i) > '9') {
                 return false;
@@ -57,11 +57,10 @@ public class MilkStore {
     public void openShop(Player player) throws InputMismatchException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            Main.clearScreen();
             int i = 1;
             System.out.println("############ ANIMAL STORE ############");
             System.out.println("You have: " + player.getBucket() + " milk. \n");
-            for (Animal animal : getBuyableAnimalsList()) {
+            for (Milkables animal : getBuyableAnimalsList()) {
                 System.out.println("[" + i + "]Buy " + animal.getName() + ". Price: " + animal.getPrice());
                 i++;
             }
@@ -91,18 +90,7 @@ public class MilkStore {
                 System.out.println("That not a valid input.");
                 break;
             }
-                
-            // switch (choice) {
-                // case 1:
-                //     player.buyAnimal(buyableAnimals.get(0));
-                //     buyableAnimals.remove(0);
-                //     break;
-                // case 5:
-                //     return;
-                // default:
-                //     System.out.println("Invalid choice. Please try again.");
-                //     break;
-            }
         }
-
     }
+
+}

@@ -1,19 +1,15 @@
 package Y;
 
-import java.util.Scanner;
-import java.util.Random;
-
 /**
- * Animal superclass
+ * Milkables abstract superclass
  */
-abstract class Animal {
+abstract class Milkables {
     private String name;
     private int milkValue;
     private int price;
-    // private int shinyMultiplier = 1;
-    // private boolean isShiny = false;
+ 
 
-    public Animal() {
+    public Milkables() {
         }
 
     public int getMilkValue() {
@@ -40,7 +36,8 @@ abstract class Animal {
         this.milkValue = milkValue;
     }
 
-    public void upgradeAnimal(int milkValue) {
+    // Not used but method for old animals to become usefull
+    public void upgradeAnimal() {
         setMilkValue(getMilkValue() * 2);
     }
 }
