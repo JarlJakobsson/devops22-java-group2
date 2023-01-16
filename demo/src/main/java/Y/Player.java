@@ -4,29 +4,29 @@ import java.util.*;
 
 public class Player {
     private String name;
-    private int bucket = 0;
+    private int bucket;
     private int bucketSize = 10;
     private int milkingSkill = 1;
-    private List<Animal> ownedAnimals = new ArrayList<Animal>();
+    private List<Milkables> ownedAnimals = new ArrayList<Milkables>();
 
     public Player(String name) {
         this.name = name;
     }
 
-    public List<Animal> getAnimalList() {
+    public List<Milkables> getAnimalList() {
         return this.ownedAnimals;
     }
-
-    public void setBucket(int i) {
-        this.bucket = i;
-    }
-
+    
     public int getAnimalsLen() {
         return ownedAnimals.size();
     }
-
-    public Animal getAnimal(int animalIndex) {
+    
+    public Milkables getAnimal(int animalIndex) {
         return this.ownedAnimals.get(animalIndex);
+    }
+    
+    public void setBucket(int i) {
+        this.bucket = i;
     }
 
     public int getBucket() {
@@ -37,14 +37,17 @@ public class Player {
         return this.bucketSize;
     }
 
+    public void setBucketsize(int i) {
+        this.bucketSize = i;
+    }
+
     public void upgradeBucketSize() {
-        if (getBucket() == getBucketsize()) {
-            this.bucketSize *= 2;
-            System.out.println("\nBucket size increased to " + getBucketsize());
-            this.bucket = 0;
-        }
-        else {
-            System.out.println("\nYou can't afford that.");
+        if (getBucket() == getBucketsize() && (getBucketsize() * 2) < 160000) {
+                setBucketsize(getBucketsize() * 2);
+                System.out.println("\nBucket size increased to " + getBucketsize());
+                setBucket(0);
+        } else {
+            System.out.println("\nYou can't afford that or the bucket is fully upgraded.");
         }
     }
 
@@ -54,10 +57,10 @@ public class Player {
 
     public void upgradeMilkingSkill() {
         {
-            if (getBucket() >= (getBucketsize()/2)) {
+            if (getBucket() >= (getBucketsize() / 2)) {
                 this.milkingSkill += 1;
                 System.out.println("\nMilking skill increased to: " + getMilkingSkill());
-                this.bucket -= (getBucketsize()/2);
+                this.bucket -= (getBucketsize() / 2);
             } else {
                 System.out.println("\nYou can't afford that.");
             }
@@ -65,7 +68,7 @@ public class Player {
 
     }
 
-    public void milkAnimal(Animal animal) {
+    public void milkAnimal(Milkables animal) {
         int milk = animal.getMilkValue() * this.milkingSkill;
         if (milk + getBucket() > getBucketsize()) {
             setBucket(getBucketsize());
@@ -79,9 +82,9 @@ public class Player {
         }
     }
 
-    public Animal bestAnimal () {
-        Animal bestAnimal = getAnimalList().get(0);
-        for (Animal animal : getAnimalList()) {
+    public Milkables bestAnimal() {
+        Milkables bestAnimal = getAnimalList().get(0);
+        for (Milkables animal : getAnimalList()) {
             if (animal.getMilkValue() > bestAnimal.getMilkValue()) {
                 bestAnimal = animal;
             }
@@ -89,19 +92,14 @@ public class Player {
         return bestAnimal;
     }
 
-    public boolean buyAnimal(Animal animal) {
-        Scanner scanner = new Scanner(System.in);
+    public boolean buyAnimal(Milkables animal) {
         if (getBucket() >= animal.getPrice()) {
             this.ownedAnimals.add(animal);
-            Main.clearScreen();
             setBucket(getBucket() - animal.getPrice());
             System.out.println("You bought a " + animal.getName());
-            scanner.nextLine();
             return true;
         } else {
-            Main.clearScreen();
             System.out.println("You can't afford that.");
-            scanner.nextLine();
             return false;
         }
     }
