@@ -17,6 +17,10 @@ public class Player {
         return this.ownedAnimals;
     }
 
+    public void setBucket(int i) {
+        this.bucket = i;
+    }
+
     public int getAnimalsLen() {
         return ownedAnimals.size();
     }
@@ -34,22 +38,37 @@ public class Player {
     }
 
     public void upgradeBucketSize() {
-        this.bucketSize *= 2;
-        System.out.println("Bucket size = " + this.bucketSize);
+        if (getBucket() == getBucketsize()) {
+            this.bucketSize *= 2;
+            System.out.println("\nBucket size increased to " + getBucketsize());
+            this.bucket = 0;
+        }
+        else {
+            System.out.println("\nYou can't afford that.");
+        }
     }
 
     public int getMilkingSkill() {
         return this.milkingSkill;
     }
 
-    public void upgradeMilkingSkill(int upgradeValue) {
-        this.milkingSkill += upgradeValue;
+    public void upgradeMilkingSkill() {
+        {
+            if (getBucket() >= (getBucketsize()/2)) {
+                this.milkingSkill += 1;
+                System.out.println("\nMilking skill increased to: " + getMilkingSkill());
+                this.bucket -= (getBucketsize()/2);
+            } else {
+                System.out.println("\nYou can't afford that.");
+            }
+        }
+
     }
 
     public void milkAnimal(Animal animal) {
         int milk = animal.getMilkValue() * this.milkingSkill;
-        if (milk + this.bucket > bucketSize) {
-            this.bucket = this.bucketSize;
+        if (milk + getBucket() > getBucketsize()) {
+            setBucket(getBucketsize());
             System.out.println();
             System.out.println("The bucket is full.");
         } else {
@@ -60,9 +79,31 @@ public class Player {
         }
     }
 
-    public void buyAnimal(Animal animal) {
-        this.ownedAnimals.add(animal);
-        System.out.println("You bought a " + animal.getName());
+    public Animal bestAnimal () {
+        Animal bestAnimal = getAnimalList().get(0);
+        for (Animal animal : getAnimalList()) {
+            if (animal.getMilkValue() > bestAnimal.getMilkValue()) {
+                bestAnimal = animal;
+            }
+        }
+        return bestAnimal;
+    }
+
+    public boolean buyAnimal(Animal animal) {
+        Scanner scanner = new Scanner(System.in);
+        if (getBucket() >= animal.getPrice()) {
+            this.ownedAnimals.add(animal);
+            Main.clearScreen();
+            setBucket(getBucket() - animal.getPrice());
+            System.out.println("You bought a " + animal.getName());
+            scanner.nextLine();
+            return true;
+        } else {
+            Main.clearScreen();
+            System.out.println("You can't afford that.");
+            scanner.nextLine();
+            return false;
+        }
     }
 
 }
