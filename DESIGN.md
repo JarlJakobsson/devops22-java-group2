@@ -3,7 +3,7 @@
 Initial drawn design, image below.
 
 Low res version until Jarl provides a higher res version.
-![Original drawing](Project-drawing-low-res.jpg)
+![Original drawing](https://i.imgur.com/vxlw85Y.png)
 
 ### Bulletpoints
 Bulletpoints are randomly assorted, aka. not according to priority
@@ -17,4 +17,4 @@ Bulletpoints are randomly assorted, aka. not according to priority
 
 ### Class diagram
 
-To be added later...
+![classdiagram](https://i.imgur.com/epeLRcO.png)
