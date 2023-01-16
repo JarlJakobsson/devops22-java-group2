@@ -52,4 +52,20 @@ public class AnimalTest {
         assertEquals(6, camel.getMilkValue());
         assertEquals(100000, camel.getPrice());
     }
+
+    @Test
+    public void almondPropertiesTest() {
+        Almond almond = new Almond();
+        assertEquals("Almond", almond.getName());
+        assertEquals(11, almond.getMilkValue());
+        assertEquals(1000000, almond.getPrice());
+    }
+
+    @Test
+    public void coconutPropertiesTest() {
+        Coconut coconut = new Coconut();
+        assertEquals("Coconut", coconut.getName());
+        assertEquals(7, coconut.getMilkValue());
+        assertEquals(500000, coconut.getPrice());
+    }
 }
