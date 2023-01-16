@@ -29,7 +29,7 @@ public class Player {
         return this.bucket;
     }
 
-    public int getBucketsize() {
+    public int getBucketSize() {
         return this.bucketSize;
     }
 
