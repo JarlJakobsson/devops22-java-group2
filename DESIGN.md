@@ -17,4 +17,4 @@ Bulletpoints are randomly assorted, aka. not according to priority
 
 ### Class diagram
 
-To be added later...
+![Class diagram](Class-diagram.png)
