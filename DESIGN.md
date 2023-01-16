@@ -5,6 +5,7 @@ Initial drawn design, image below.
 Low res version until Jarl provides a higher res version.
 ![Original drawing](https://i.imgur.com/vxlw85Y.png)
 
+
 ### Bulletpoints
 Bulletpoints are randomly assorted, aka. not according to priority
 
